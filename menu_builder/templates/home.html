@@ -1,10 +1,25 @@
 <!-- templates/home.html -->
 {% extends 'base.html' %}
+{% load mptt_tags %}
 
 {% block content %}
 <div class="container wrapper flex-grow-1">
     <h2>Welcome in simple menu builder!<h2>
     <h4>Now, einter in admin panel:<h4>
     <a class='nav-link active' aria-current='page' href='/admin'>Go to admin panel</a>
+    <br>
+    <br>
+    <ul>
+        {% recursetree menus %}
+            <li>
+                {{ node.name }}
+                {% if not node.is_leaf_node %}
+                    <ul class="children">
+                        {{ children }}
+                    </ul>
+                {% endif %}
+            </li>
+        {% endrecursetree %}
+    </ul>
 </div>
 {% endblock %}
