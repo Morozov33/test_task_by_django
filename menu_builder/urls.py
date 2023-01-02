@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from menu_builder.views import HomeView
+from menu_builder.views import HomeView, TasksView, LabelsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view(), name='home'),
+    path('tasks/', TasksView.as_view(), name='tasks'),
+    path('labels/', LabelsView.as_view(), name='labels'),
 ]
