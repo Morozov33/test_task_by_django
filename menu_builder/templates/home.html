@@ -1,16 +1,10 @@
 <!-- templates/home.html -->
 {% extends 'base.html' %}
-{% load mptt_tags %}
-{% load common_tags %}
 
 
 {% block content %}
-<div class="container wrapper flex-grow-1">
     <h2>Welcome in simple menu builder!<h2>
     <h4>Now, einter in admin panel and create menu:<h4>
+    <br>
     <a class='nav-link active' aria-current='page' href='/admin'>Create menu</a>
-    <br>
-    <br>
-    {% draw_menu "main_menu" %}
-</div>
 {% endblock %}
