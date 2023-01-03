@@ -5,12 +5,11 @@
 
 
 {% block content %}
-<div class="container wrapper flex-grow-1">
-    <br>
-    <h3>List of tasks:<h3>
+
+    {% draw_menu "second_menu" %}
+<div class="col text-left">
+    <h3>List of tasks:</h3>
         <p>Task 1</p>
-        <p>Task 2<p>
-    <br>
-    {% draw_menu "main_menu" %}
+        <p>Task 2</p>
 </div>
 {% endblock %}

@@ -1,24 +1,21 @@
 {# Load the tag library #}
 {% load bootstrap4 %}
-{# Load CSS and JavaScript #}
+{# Load CSS #}
 {% bootstrap_css %}
-{% bootstrap_javascript jquery=True %}
 {% load mptt_tags %}
 
 
-<nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-    <div class="position-sticky pt-3">
-        <ul class="nav flex-column">
+<div class="col-md-auto">
+        <ul class="list-group">
             {% recursetree menu_ %}
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ node.get_absolute_url }}">{{ node.name }}</a>
+                <li class="list-group-item">
+                    <a href="{{ node.get_absolute_url }}">{{ node.name }}</a>
                     {% if not node.is_leaf_node %}
-                        <ul class="nav flex-column">
+                        <ul class="list-group-item">
                             {{ children }}
                         </ul>
                     {% endif %}
                 </li>
             {% endrecursetree %}
-    </ul>
+        </ul>
 </div>
-</nav>

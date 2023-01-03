@@ -1,11 +1,6 @@
-{# Load the tag library #}
 {% load bootstrap4 %}
-{# Load CSS and JavaScript #}
+{# Load CSS #}
 {% bootstrap_css %}
-{% bootstrap_javascript jquery=True %}
-{% load mptt_tags %}
-{% load common_tags %}
-
 
 <!doctype html>
 <html>
@@ -13,28 +8,22 @@
     <meta charset="utf-8">
     <title>Menu builder v.1.0</title>
   </head>
-  <body>
-      <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+  <body class="d-flex flex-column min-vh-100">
+      <header class="navbar navbar-expand-md navbar-light bg-light mb-3">
         <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="/">Menu builder</a>
-    </header>
+      </header>
 
-<div class="container-fluid">
-  <div class="row">
-    {% draw_menu "main_menu" %}
+<div class="container-fluid flex-grow-1">
+<div class="row h-100">
+    {% block content %}
+    {% endblock %}
+</div>
+</div>
 
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-            {% block content %}
-            {% endblock %}
-    </main>
-
+<footer class="footer mt-auto bg-light">
     <div class="container">
-        <footer class="py-3 my-4">
-            <hr>
-            <p class="text-center text-muted">Coded by <a href="https://github.com/Morozov33">D.Morozov</a>, 2022</p>
-        </footer>
-    </div>
-
-</div>
-</div>
+        <p class="text-center text-muted">Coded by <a href="https://github.com/Morozov33">D.Morozov</a>, 2022</p>
+        </div>
+    </footer>
 </body>
 </html>

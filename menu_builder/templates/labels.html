@@ -5,12 +5,12 @@
 
 
 {% block content %}
-<div class="container wrapper flex-grow-1">
-    <br>
-    <h3>List of labels:<h3>
-        <p>Label 1</p>
-        <p>Label 2<p>
-    <br>
+
     {% draw_menu "main_menu" %}
+    {% draw_menu "second_menu" %}
+<div class="col text-left">
+    <h3>List of labels:</h3>
+        <p>Label 1</p>
+        <p>Label 2</p>
 </div>
 {% endblock %}
