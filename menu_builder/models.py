@@ -12,7 +12,7 @@ class menu(MPTTModel):
         return f"{self.name}"
 
     class MPTTMeta:
-        order_insertion_by = ['name', 'url']
+        order_insertion_by = ['name',]
 
     def get_absolute_url(self):
         if self.url:

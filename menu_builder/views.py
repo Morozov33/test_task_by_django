@@ -11,3 +11,7 @@ class TasksView(TemplateView):
 
 class LabelsView(TemplateView):
     template_name = 'labels.html'
+
+
+class TestView(TemplateView):
+    template_name = 'test.html'

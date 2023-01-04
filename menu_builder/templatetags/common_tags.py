@@ -1,13 +1,14 @@
 from django import template
-from menu_builder.models import menu
+from menu_builder.models import menu as menu_model
 register = template.Library()
 
 
-@register.inclusion_tag('menu.html')
-def draw_menu(menu_name):
-    menu_root = menu.objects.filter(name=menu_name)
-    menu_ = menu_root.get_descendants(include_self=True)
+@register.inclusion_tag('menu.html', takes_context=True)
+def draw_menu(context, menu_name):
+    menu_root = menu_model.objects.filter(name=menu_name)
+    menu = menu_root.get_descendants(include_self=False)
     return {
-        "menu_": menu_,
+        "menu": menu,
         "menu_name": menu_name,
+        "request": context['request'],
     }

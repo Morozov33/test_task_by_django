@@ -1,21 +1,49 @@
-{# Load the tag library #}
-{% load bootstrap4 %}
-{# Load CSS #}
-{% bootstrap_css %}
 {% load mptt_tags %}
 
 
 <div class="col-md-auto">
-        <ul class="list-group">
-            {% recursetree menu_ %}
-                <li class="list-group-item">
-                    <a href="{{ node.get_absolute_url }}">{{ node.name }}</a>
-                    {% if not node.is_leaf_node %}
-                        <ul class="list-group-item">
-                            {{ children }}
-                        </ul>
-                    {% endif %}
-                </li>
-            {% endrecursetree %}
-        </ul>
+  <div class="flex-shrink-0 p-3 bg-white">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+      <span class="fw-semibold">{{ menu_name }}</span>
+    </a>
+    <ul class="list-unstyled">
+      {% recursetree menu %}
+        <li>
+          {% if node.get_absolute_url == request.path %}
+          {% if node.is_leaf_node %}
+            <a href="{{ node.get_absolute_url }}" class="btn btn-secondary d-flex align-items-center link-dark text-decoration-none">
+              {{ node.name }}
+            </a>
+          {% else %}
+            <button class="btn btn-secondary align-items-center rounded collapsed active" data-bs-toggle="collapse" data-bs-target="#{{ node.name }}-collapse" aria-expanded="false" {# href="{{ node.get_absolute_url }}" #}>
+              {{ node.name }}
+            </button>
+          {% endif %}
+          {% else %}
+          {% if node.is_leaf_node %}
+            <a href="{{ node.get_absolute_url }}" class="btn btn-outline-secondary d-flex align-items-center link-dark text-decoration-none">
+              {{ node.name }}
+            </a>
+          {% else %}
+            <button class="btn btn-outline align-items-center rounded collapsed active" data-bs-toggle="collapse" data-bs-target="#{{ node.name }}-collapse" aria-expanded="false" {# href="{{ node.get_absolute_url }}" #}>
+              {{ node.name }}
+            </button>
+          {% endif %}
+          {% endif %}
+          {% if not node.is_leaf_node %}
+            <div class="collapse show" id="{{ node.name }}-collapse">
+              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                {{ children }}
+              </ul>
+            </div>
+          {% endif %}
+        </li>
+
+        {% if node.level == 1 %}
+          <li class="border-top my-3"></li>
+        {% endif %}
+
+      {% endrecursetree %}
+    </ul>
+  </div>
 </div>
