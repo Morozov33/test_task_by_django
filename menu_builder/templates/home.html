@@ -1,16 +1,14 @@
 <!-- templates/home.html -->
 {% extends 'base.html' %}
-{% load common_tags %}
 
 
 {% block content %}
-{% draw_menu "main_menu" %}
 
 <div class="col text-center">
     <h2>Welcome in simple menu builder!<h2>
     <h4>Now, einter in admin panel and create menu:<h4>
-    <a class='nav-link active' aria-current='page' href='/admin'>Create menu</a>
-    <a class='nav-link active' aria-current='page' href='/test'>Test</a>
+    <br>
+    <a class='btn btn-outline-primary' href='/admin'>Create menu</a>
 </div>
 
 {% endblock %}

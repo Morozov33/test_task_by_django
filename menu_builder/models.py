@@ -14,11 +14,9 @@ class menu(MPTTModel):
     class MPTTMeta:
         order_insertion_by = ['name',]
 
-    def get_absolute_url(self):
+    def get_url(self):
         if self.url:
             try:
                 return reverse(self.url)
             except NoReverseMatch:
                 return self.url
-        else:
-            return reverse("home")

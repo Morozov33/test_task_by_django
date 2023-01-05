@@ -2,48 +2,21 @@
 
 
 <div class="col-md-auto">
-  <div class="flex-shrink-0 p-3 bg-white">
-    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
-      <span class="fw-semibold">{{ menu_name }}</span>
-    </a>
     <ul class="list-unstyled">
       {% recursetree menu %}
-        <li>
-          {% if node.get_absolute_url == request.path %}
-          {% if node.is_leaf_node %}
-            <a href="{{ node.get_absolute_url }}" class="btn btn-secondary d-flex align-items-center link-dark text-decoration-none">
-              {{ node.name }}
-            </a>
-          {% else %}
-            <button class="btn btn-secondary align-items-center rounded collapsed active" data-bs-toggle="collapse" data-bs-target="#{{ node.name }}-collapse" aria-expanded="false" {# href="{{ node.get_absolute_url }}" #}>
-              {{ node.name }}
-            </button>
-          {% endif %}
-          {% else %}
-          {% if node.is_leaf_node %}
-            <a href="{{ node.get_absolute_url }}" class="btn btn-outline-secondary d-flex align-items-center link-dark text-decoration-none">
-              {{ node.name }}
-            </a>
-          {% else %}
-            <button class="btn btn-outline align-items-center rounded collapsed active" data-bs-toggle="collapse" data-bs-target="#{{ node.name }}-collapse" aria-expanded="false" {# href="{{ node.get_absolute_url }}" #}>
-              {{ node.name }}
-            </button>
-          {% endif %}
-          {% endif %}
-          {% if not node.is_leaf_node %}
-            <div class="collapse show" id="{{ node.name }}-collapse">
-              <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+        <li class="mb-1">
+            <div class="btn-group">
+                <a class="btn {% if node.get_url == path %} btn-link {% endif %} {% if node.level == 0 %} btn-outline-dark {% endif %}" href="{{ node.get_url }}" role="button">{{ node.name }}</a>
+            {% if not node.is_leaf_node %}
+              <button class="btn collapsed dropdown-toggle dropdown-toggle-split {% if node.level == 0 %} btn-outline-dark {% endif %}" data-bs-toggle="collapse" data-bs-target="#{{ node.name|lower|cut:" "|cut:"_" }}-{{ node.id }}-collapse"></button>
+            </div>
+            <div class="collapse {% if node.name in nodes_path %}show{% endif %}" id="{{ node.name|lower|cut:" "|cut:"_" }}-{{ node.id }}-collapse">
+              <ul type="none">
                 {{ children }}
               </ul>
             </div>
-          {% endif %}
+            {% endif %}
         </li>
-
-        {% if node.level == 1 %}
-          <li class="border-top my-3"></li>
-        {% endif %}
-
       {% endrecursetree %}
     </ul>
-  </div>
 </div>
