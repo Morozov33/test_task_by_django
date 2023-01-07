@@ -11,4 +11,3 @@ class PageView(TemplateView):
 
 class Page_2View(TemplateView):
     template_name = 'page_2.html'
-

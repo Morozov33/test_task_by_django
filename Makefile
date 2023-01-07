@@ -1,9 +1,6 @@
 lint: #linter for code
 	poetry run flake8 --ignore=E501 menu_builder
 
-test: #start pytest
-	poetry run python3 manage.py test
-
 start: #starting dev server
 	poetry run python3 manage.py runserver
 

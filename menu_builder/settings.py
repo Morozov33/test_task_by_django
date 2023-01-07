@@ -133,14 +133,14 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGGING = {
-        'version': 1,
-        'handlers': {
+    'version': 1,
+    'handlers': {
         'console': {
             'class': 'logging.StreamHandler',
             'level': 'DEBUG',
         },
     },
-        'loggers': {
+    'loggers': {
         'django.db.backends': {
             'level': 'DEBUG',
             'handlers': ['console', ],
