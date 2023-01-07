@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 from pathlib import Path
 from dotenv import load_dotenv
+import dj_database_url
 import os
 
 
@@ -30,9 +31,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.getenv('DEBUG')
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['webserver', '127.0.0.1', 'menu-builder.herokuapp.com', ]]
 
 
 # Application definition
@@ -89,6 +90,9 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+if os.getenv('DATABASE_URL'):
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 
 # Password validation
