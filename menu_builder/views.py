@@ -5,13 +5,10 @@ class HomeView(TemplateView):
     template_name = 'home.html'
 
 
-class TasksView(TemplateView):
-    template_name = 'tasks.html'
+class PageView(TemplateView):
+    template_name = 'page.html'
 
 
-class LabelsView(TemplateView):
-    template_name = 'labels.html'
+class Page_2View(TemplateView):
+    template_name = 'page_2.html'
 
-
-class TestView(TemplateView):
-    template_name = 'test.html'
