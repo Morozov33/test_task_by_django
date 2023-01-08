@@ -13,3 +13,6 @@ shell: #start shell
 
 export: #make export dependens from poetry on Heroku
 	poetry export -f requirements.txt --output requirements.txt
+
+admin: #create new admin
+	poetry run python3 manage.py createsuperuser
