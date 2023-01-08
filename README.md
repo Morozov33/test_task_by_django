@@ -1,11 +1,11 @@
 [![linter](https://github.com/Morozov33/test_task_by_django/actions/workflows/linter.yml/badge.svg)](https://github.com/Morozov33/test_task_by_django/actions/workflows/linter.yml)
 [![Maintainability](https://api.codeclimate.com/v1/badges/07b5d943839061b39930/maintainability)](https://codeclimate.com/github/Morozov33/test_task_by_django/maintainability)
 ---
-##Тестовое задание для компании UpTrade на позицию Junior Backend Developer.  
-###Конструктор меню.  
-####Ссылка на развернутое приложение на Heroku: https://menu-builder-django.herokuapp.com/  
+### Конструктор меню.  
+#### Тестовое задание для компании UpTrade на позицию Junior Backend Developer.  
+##### Ссылка на развернутое приложение на Heroku: https://menu-builder-django.herokuapp.com/  
 ---
-Позволяет конструировать выпадающее древовидное меню, используя стандартную панель администратора Django.
+Позволяет конструировать выпадающее древовидное меню, используя стандартную панель администратора Django.  
 Описание:
 1. Войти в панель администратора можно по адресу: https://menu-builder-django.herokuapp.com/admin или по кнопке `Create menu` на домашней странице приложения.
 2. В панели администратора в разделе `MENU_BUILDER/Menus` уже созданны два меню: `main_menu` и `docs_menu`.
