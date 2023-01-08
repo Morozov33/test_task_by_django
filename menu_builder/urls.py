@@ -25,6 +25,7 @@ urlpatterns = [
     path('support/', PageView.as_view(), name='support'),
     path('docs/', TemplateView.as_view(template_name='docs.html'),
          name='docs'),
+    path('docs/docs', Page_2View.as_view(), name='documentation'),
     path('catalog/category_1/', PageView.as_view(), name='category_1'),
     path('catalog/category_2/', PageView.as_view(), name='category_2'),
     path('catalog/category_1/subcategory_1/',

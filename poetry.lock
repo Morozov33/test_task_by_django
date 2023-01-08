@@ -16,6 +16,25 @@ files = [
 tests = ["mypy (>=0.800)", "pytest", "pytest-asyncio"]
 
 [[package]]
+name = "beautifulsoup4"
+version = "4.11.1"
+description = "Screen-scraping library"
+category = "main"
+optional = false
+python-versions = ">=3.6.0"
+files = [
+    {file = "beautifulsoup4-4.11.1-py3-none-any.whl", hash = "sha256:58d5c3d29f5a36ffeb94f02f0d786cd53014cf9b3b3951d42e0080d8a9498d30"},
+    {file = "beautifulsoup4-4.11.1.tar.gz", hash = "sha256:ad9aa55b65ef2808eb405f46cf74df7fcb7044d5cbc26487f96eb2ef2e436693"},
+]
+
+[package.dependencies]
+soupsieve = ">1.2"
+
+[package.extras]
+html5lib = ["html5lib"]
+lxml = ["lxml"]
+
+[[package]]
 name = "dj-database-url"
 version = "1.2.0"
 description = "Use Database URLs in your Django Application."
@@ -52,19 +71,23 @@ argon2 = ["argon2-cffi (>=19.1.0)"]
 bcrypt = ["bcrypt"]
 
 [[package]]
-name = "django-bootstrap5"
-version = "22.2"
-description = "Bootstrap 5 for Django"
+name = "django-bootstrap-v5"
+version = "1.0.11"
+description = "Bootstrap 5 support for Django projects"
 category = "main"
 optional = false
-python-versions = ">=3.7"
+python-versions = ">=3.6,<4.0"
 files = [
-    {file = "django-bootstrap5-22.2.tar.gz", hash = "sha256:e944f5ced342e0e16cde77e1ddacb4b9fd5bce4cc190df2f7da0b8e18a24c9cb"},
-    {file = "django_bootstrap5-22.2-py3-none-any.whl", hash = "sha256:5d677bbfb94207c1a034d63a5f39d95ce287ef509e0b31dfb4d233cc81f93bcc"},
+    {file = "django-bootstrap-v5-1.0.11.tar.gz", hash = "sha256:2d431308859ce3cab7729bb09c76039059cd5fbdd34484da82c4c7f8d49da3a2"},
+    {file = "django_bootstrap_v5-1.0.11-py3-none-any.whl", hash = "sha256:a207aa804938164c8450bbbef4faaba6d2093b3236000557a50f3bd44b53d268"},
 ]
 
 [package.dependencies]
-Django = ">=3.2"
+beautifulsoup4 = ">=4.8.0,<5.0.0"
+django = ">=2.2,<5.0"
+
+[package.extras]
+docs = ["m2r2 (>=0.2.5,<0.3.0)", "sphinx (>=4.4,<5.0)", "sphinx_rtd_theme (>=1.0,<2.0)"]
 
 [[package]]
 name = "django-js-asset"
@@ -290,6 +313,18 @@ testing = ["build[virtualenv]", "filelock (>=3.4.0)", "flake8 (<5)", "flake8-202
 testing-integration = ["build[virtualenv]", "filelock (>=3.4.0)", "jaraco.envs (>=2.2)", "jaraco.path (>=3.2.0)", "pytest", "pytest-enabler", "pytest-xdist", "tomli", "virtualenv (>=13.0.0)", "wheel"]
 
 [[package]]
+name = "soupsieve"
+version = "2.3.2.post1"
+description = "A modern CSS selector implementation for Beautiful Soup."
+category = "main"
+optional = false
+python-versions = ">=3.6"
+files = [
+    {file = "soupsieve-2.3.2.post1-py3-none-any.whl", hash = "sha256:3b2503d3c7084a42b1ebd08116e5f81aadfaea95863628c80a3b774a11b7c759"},
+    {file = "soupsieve-2.3.2.post1.tar.gz", hash = "sha256:fc53893b3da2c33de295667a0e19f078c14bf86544af307354de5fcf12a3f30d"},
+]
+
+[[package]]
 name = "sqlparse"
 version = "0.4.3"
 description = "A non-validating SQL parser."
@@ -313,7 +348,22 @@ files = [
     {file = "tzdata-2022.7.tar.gz", hash = "sha256:fe5f866eddd8b96e9fcba978f8e503c909b19ea7efda11e52e39494bad3a7bfa"},
 ]
 
+[[package]]
+name = "whitenoise"
+version = "6.3.0"
+description = "Radically simplified static file serving for WSGI applications"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+files = [
+    {file = "whitenoise-6.3.0-py3-none-any.whl", hash = "sha256:cf8ecf56d86ba1c734fdb5ef6127312e39e92ad5947fef9033dc9e43ba2777d9"},
+    {file = "whitenoise-6.3.0.tar.gz", hash = "sha256:fe0af31504ab08faa1ec7fc02845432096e40cc1b27e6a7747263d7b30fb51fa"},
+]
+
+[package.extras]
+brotli = ["Brotli"]
+
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.10"
-content-hash = "1e2be05ff4769074bde3aa9e44cc0255873e166d61028c3a2a2eb4daab72498b"
+content-hash = "8ae6daa07d5a1939f44d5e5d148fad428944e3678244304e2b22dd2f0dbfde44"
