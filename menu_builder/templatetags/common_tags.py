@@ -5,6 +5,7 @@ from django.urls import resolve
 
 register = template.Library()
 
+
 # register new common tag
 @register.inclusion_tag('menu.html', takes_context=True)
 def draw_menu(context, menu_name):
@@ -15,13 +16,10 @@ def draw_menu(context, menu_name):
     # in url_list both path: named url and absolute url
     url_list = [path, resolve(path).url_name]
 
-    # get <menu_name> tree from DB
-    menu = menu_model.objects.get(name=menu_name)
+    # get tree from DB
+    menu = menu_model.objects.all()
 
-    # get all despendants of tree
-    menu_tree = menu.get_descendants(include_self=True)
-
-    # get current node from <menu_name> tree
+    # get current node from tree model
     current_node = menu_model.objects.filter(url__in=url_list)
 
     # get tree-path of ansestors of current node
@@ -32,8 +30,9 @@ def draw_menu(context, menu_name):
 
     # returns values in template tag
     return {
-        "menu": menu_tree,
+        "menu": menu,
         "menu_name": menu_name,
         "path": path,
         "nodes_path": nodes_path,
+        "menu_id": 0,
     }

@@ -4,6 +4,7 @@
 <div class="col-md-auto">
   <ul class="list-unstyled">
     {% recursetree menu %}
+      {% if node.name == menu_name or node.level != 0 %}
       <li class="mb-1">
         <div class="btn-group">
           <a class="btn {% if node.get_url == path %}btn-link{% endif %} {% if node.level == 0 %} btn-outline-dark {% endif %}" href="{{ node.get_url }}" role="button">{{ node.name }}</a>
@@ -17,6 +18,7 @@
         </div>
         {% endif %}
       </li>
+      {% endif %}
     {% endrecursetree %}
   </ul>
 </div>
