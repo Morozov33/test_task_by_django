@@ -6,20 +6,22 @@ from django.urls import resolve
 register = template.Library()
 
 
-def get_nodes_path(tree, urls, menu_name, parent_id=None):
+def get_nodes_path(tree, urls):
     # returns a list of node.id, that corresponds to
-    # the path to the current point menu
+    # the paths to the current point menu from all menues
     path = []
+    parent_id = []
     for node in tree:
-        if (node.name == menu_name or node.level != 0) and node.url in urls:
+        if node.url in urls:
             path.append(node.id)
-            parent_id = node.parent_id
+            parent_id.append(node.parent_id)
 
     def get_all_parents(tree, path, parent_id):
         for node in tree:
-            if node.id == parent_id:
+            if node.id in parent_id:
                 path.append(node.id)
-                get_all_parents(tree, path, node.parent_id)
+                parent_id[parent_id.index(node.id)] = node.parent_id
+                get_all_parents(tree, path, parent_id)
 
     get_all_parents(tree, path, parent_id)
     return path
@@ -38,10 +40,10 @@ def draw_menu(context, menu_name):
     # get tree from DB
     menu = menu_model.objects.all()
 
-    # returns values in template tag
+    # returns values in template
     return {
         "menu": menu,
         "menu_name": menu_name,
         "path": path,
-        "nodes_path": get_nodes_path(menu, urls, menu_name),
+        "nodes_path": get_nodes_path(menu, urls),
     }

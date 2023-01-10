@@ -3,15 +3,16 @@
 
 <div class="col-md-auto">
   <ul class="list-unstyled">
+      <p>{{ nodes_path }}</p>
     {% recursetree menu %}
       {% if node.name == menu_name or node.level != 0 %}
       <li class="mb-1">
         <div class="btn-group">
-          <a class="btn {% if node.get_url == path %}btn-link{% endif %} {% if node.level == 0 %} btn-outline-dark {% endif %}" href="{{ node.get_url }}" role="button">{{ node.name }}</a>
+          <a class="btn{% if node.get_url == path %} btn-link{% endif %}{% if node.level == 0 %} btn-outline-dark{% endif %}" href="{{ node.get_url }}" role="button">{{ node.name }}</a>
         {% if not node.is_leaf_node %}
-          <button class="btn collapsed dropdown-toggle dropdown-toggle-split {% if node.level == 0 %}btn-outline-dark{% endif %}" data-bs-toggle="collapse" data-bs-target="#{{ node.name|lower|cut:" "|cut:"_" }}-{{ node.id }}-collapse"></button>
+          <button class="btn collapsed dropdown-toggle dropdown-toggle-split{% if node.level == 0 %} btn-outline-dark{% endif %}" data-bs-toggle="collapse" data-bs-target="#{{ node.name|lower|cut:" "|cut:"_" }}-{{ node.id }}-collapse"></button>
         </div>
-        <div class="collapse {% if node.id in nodes_path %}show{% endif %}" id="{{ node.name|lower|cut:" "|cut:"_" }}-{{ node.id }}-collapse">
+        <div class="collapse{% if node.id in nodes_path %} show{% endif %}" id="{{ node.name|lower|cut:" "|cut:"_" }}-{{ node.id }}-collapse">
           <ul type="none">
             {{ children }}
           </ul>
