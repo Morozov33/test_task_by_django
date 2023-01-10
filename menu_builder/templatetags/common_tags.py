@@ -6,6 +6,25 @@ from django.urls import resolve
 register = template.Library()
 
 
+def get_nodes_path(tree, urls, menu_name, parent_id=None):
+    # returns a list of node.id, that corresponds to
+    # the path to the current point menu
+    path = []
+    for node in tree:
+        if (node.name == menu_name or node.level != 0) and node.url in urls:
+            path.append(node.id)
+            parent_id = node.parent_id
+
+    def get_all_parents(tree, path, parent_id):
+        for node in tree:
+            if node.id == parent_id:
+                path.append(node.id)
+                get_all_parents(tree, path, node.parent_id)
+
+    get_all_parents(tree, path, parent_id)
+    return path
+
+
 # register new common tag
 @register.inclusion_tag('menu.html', takes_context=True)
 def draw_menu(context, menu_name):
@@ -14,25 +33,15 @@ def draw_menu(context, menu_name):
     path = context['request'].path
 
     # in url_list both path: named url and absolute url
-    url_list = [path, resolve(path).url_name]
+    urls = (path, resolve(path).url_name)
 
     # get tree from DB
     menu = menu_model.objects.all()
-
-    # get current node from tree model
-    current_node = menu_model.objects.filter(url__in=url_list)
-
-    # get tree-path of ansestors of current node
-    current_node_tree = current_node.get_ancestors(include_self=True)
-
-    # make list of names all nodes from tree-path of current node
-    nodes_path = [node.name for node in current_node_tree]
 
     # returns values in template tag
     return {
         "menu": menu,
         "menu_name": menu_name,
         "path": path,
-        "nodes_path": nodes_path,
-        "menu_id": 0,
+        "nodes_path": get_nodes_path(menu, urls, menu_name),
     }
