@@ -3,7 +3,6 @@
 
 <div class="col-md-auto">
   <ul class="list-unstyled">
-      <p>{{ nodes_path }}</p>
     {% recursetree menu %}
       {% if node.name == menu_name or node.level != 0 %}
       <li class="mb-1">
